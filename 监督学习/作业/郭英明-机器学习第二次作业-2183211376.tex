@@ -1,0 +1,125 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+\title{机器学习作业}
+\author{郭英明}
+\date{2020/10/26}
+
+
+
+\begin{document}
+\maketitle
+\section{}
+写出下列线性规划问题的对偶问题
+\begin{center}
+$\min \limits_{x\in\mathbb{R}^2} c^{T}x$
+\begin{align}
+s.t.& \bar{A}x-\bar{b}\leq0,\\
+&Ax-b=0
+\end{align}
+其中，$c\in\mathbb{R}^2,\bar{A}\in\mathbb{R}^{m*n},\bar{b}\in\mathbb{R}^{m},{A}\in\mathbb{R}^{p*n},{b}\in\mathbb{R}^{p}$
+\end{center}
+
+\noindent\textbf{解答:}
+对应的拉格朗日函数为：
+\begin{center}
+$L(x,\lambda,\upsilon)=c^{T}x+\lambda^{T}(\bar{A}x-\bar{b})+\upsilon^{T}(Ax-b)$\\
+\end{center}
+拉格朗日函数的最小值函数为：
+\begin{align}
+g(\lambda,\upsilon)&=\inf_{x}L(x,\lambda,\upsilon)\\
+&=\inf_{x}(c+\bar{A}^{T}\lambda+A^{T}\upsilon)^{T}x-\bar{b}^{T}\lambda-b^{T}\upsilon
+\end{align}
+
+所以可以得到：\\
+\begin{equation}
+g(\lambda,\upsilon)=\left\{
+\begin{aligned}
+&-\bar{b}^{T}\lambda-b^{T}\upsilon,c+\bar{A}^{T}\lambda+A^{T}\upsilon=0\\
+&-\infty,others\\
+\end{aligned}
+\right.
+\end{equation}
+
+所以对偶问题可以写成：
+\begin{center}
+$\max \limits_{\lambda,\upsilon}-\bar{b}^{T}\lambda-b^{T}\upsilon$
+\begin{align}
+\boldsymbol{s.t.}  c+\bar{A}^{T}\lambda+A^{T}\upsilon&=0,\\
+\lambda&\ge0
+\end{align}
+\end{center}
+
+
+\section{}
+软间隔支持向量机还可以定义为一下形式：
+\begin{center}
+$\min \limits_{\omega,b,\xi} \frac{1}{2}\left \| \boldsymbol{\omega} \right \|^2+C\sum_{i=1}^m \xi_{i}^2$\\
+$\boldsymbol{s.t.} y_i (\boldsymbol{\omega}^{T}\boldsymbol{x}_i+b)\ge1-\xi_i,i=1,\cdots,m.$
+\end{center}
+试求其对偶形式，写出其$KKT$条件，并根据$KKT$条件讨论训练样本的分布情况\\
+\textbf{解答:}\\
+对应的拉格朗日函数为：
+\begin{center}
+$L(\omega,b,\xi,\lambda)= \frac{1}{2}\left \| \boldsymbol{\omega} \right \|^2+C\sum_{i=1}^m \xi_{i}^2+\sum_{i=1}^m \lambda_i(1-\xi_i-y_i(\boldsymbol{\omega}^{T}\boldsymbol{x}_i+b)$\\
+\end{center}
+对于上述拉格朗日函数，若要求得其最小值函数，对于$\boldsymbol\omega,b,\xi_i$分别求偏导数并使之等于0得到如下式子：
+
+\begin{center}
+
+$\frac{\partial L}{\partial\boldsymbol\omega}=\boldsymbol\omega-\sum_{i=1}^m \lambda_{i}y_{i}\boldsymbol{x}_i=0$\\
+$\frac{\partial L}{\partial b}=\sum_{i=1}^m \lambda_{i}y_{i}=0$\\
+$\frac{\partial L}{\partial \xi_i}=2C\xi_i-\lambda_i=0$
+\end{center}
+将上述式子代入拉格朗日函数即可得对偶问题为：
+\begin{center}
+$\max \limits_{\lambda}\sum_{i=1}^m \lambda_i-\frac{1}{2}\sum_{i=1}^m \sum_{j=1}^m\lambda_{i}\lambda_{j}y{i}y{j}\boldsymbol{x}^{T}\boldsymbol{x}-\frac{1}{4C}\sum_{i=1}^m \lambda_i^2$
+\begin{align}
+\boldsymbol{s.t.}  \sum_{i=1}^m \lambda_{i}y{i} & =0,\\
+\lambda & \ge0
+\end{align}
+\end{center}
+其$KKT$条件如下：
+
+
+\begin{equation}
+\left\{
+\begin{aligned}
+&\lambda_i  \ge  0 \\
+&1-\xi_i-y_i(\boldsymbol{\omega}^{T}\boldsymbol{x}_i+b \leq  0 \\
+&\lambda_i(1-\xi_i-y_i(\boldsymbol{\omega}^{T}\boldsymbol{x}_i+b)  =  0
+\end{aligned}
+\right.
+\end{equation}
+训练样本的分布情况如下：\\
+{$\lambda_i=0$时}
+\noindent$y_i(\boldsymbol{\omega}^{T}\boldsymbol{x}_i+b>1-\xi_i$，则该样本不会对$f(x)$有任何影响
+
+{$\lambda_i>0$时}
+\noindent$y_i(\boldsymbol{\omega}^{T}\boldsymbol{x}_i+b=1-\xi_i$，则该样本是支持向量。\\
+当$0<\xi<1$即$0<\frac{\lambda_i}{2C}<1$时，则该样本落在最大间隔内部\\
+当$\xi>1$即$\frac{\lambda_i}{2C}>1$时，则该样本被错误分类
+
+
+
+
+
+
+
+
+
+\end{document}

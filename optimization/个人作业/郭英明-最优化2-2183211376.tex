@@ -1,0 +1,156 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+\title{最优化第四次作业}
+\author{郭英明}
+\date{2020/11/6}
+
+
+
+\begin{document}
+\maketitle
+\section{}
+\subsection{}
+\textbf{1.To prove self-concordant function preserves properties under positive scaling $\alpha\geq0$, and sum}\\
+Let
+$$
+  h(x)=\alpha f(x)\quad(\alpha\geq0)
+$$
+We know $f$ is self-concordant, then
+$$
+  |f^{'''}(x)|\leq2f^{''}(x)^{\frac{3}{2}}
+$$
+if $h$ is self-concordant, then
+  $$|h^{'''}(x)|\leq2h^{''}(x)^{\frac{3}{2}}$$
+  $$\alpha|f^{'''}(x)|\leq2\alpha^{\frac{3}{2}}f^{''}(x)^{\frac{3}{2}}$$
+if $\alpha>0$,
+  $$|f^{'''}(x)|\leq2\alpha^{\frac{1}{2}}f^{''}(x)^{\frac{3}{2}}$$
+if $\alpha\geq1$, it satisfies\\
+if $f(x_{i})\ (i \in [1,n])$ is self-concordant,then
+  $$|f^{'''}(x_{i})|\leq2f^{''}(x_{i})^{\frac{3}{2}}\quad i\in[1,n]$$
+  $$\sum\limits_{i=1}^{n}|f^{'''}(x_{i})|\leq2\sum\limits_{i=1}^{n}f^{''}(x_{i})^{\frac{3}{2}},\quad i\in(1,n)$$
+for $h(x)=\sum\limits_{i=1}^{n}f(x_{i})$
+if $h(x)$ is self-concordant, then
+  $$|h^{'''}(x)|\leq2h^{''}(x)^{\frac{3}{2}}$$
+  $$|\sum\limits_{i=1}^{n}f^{'''}(x_{i})|\leq2\sum\limits_{i=1}^{n}f^{''}(x_{i})^{\frac{3}{2}},\quad i\in[1,n]$$
+Due to
+  $$|\sum\limits_{i=1}^{n}f^{'''}(x_{i})|\leq\sum\limits_{i=1}^{n}|f^{'''}(x_{i})|,\quad i\in[1,n]$$
+It satisfies\\
+
+\subsection{}
+\textbf{2.To prove self-concordant function preserves properties under composition with affine function}\\
+Let
+$$h(x)=f(ax+b)$$
+we have
+  $$h^{''}(x)=a^{2}f^{''}(ax+b)$$
+  $$h^{'''}(x)=a^{3}f^{'''}(ax+b)$$
+if $h$ is self-concordant, then
+  $$|h^{'''}(x)|\leq2h^{''}(x)^{\frac{3}{2}}$$
+  $$|a^{3}f^{'''}(ax+b)|\leq 2(a^{2}f^{''}(ax+b))^{\frac{3}{2}}$$
+which (after dividing by $a^{3}$) is the self-concordant inequality for $f$\\
+
+\subsection{}
+\textbf{3.To prove if $g$ is convex with $dom\ g= R_{++}$ and $|g^{'''}(x)|\leq3g^{''}/x$, then $f(x)=-log(-g(x))-log(x)$ is self-concordant}\\
+$$f^{''}(x)=\frac{x^{2}(g^{'}(x)^{2}-g(x)g^{''}(x))+g(x)^{2}}{x^{2}g(x)^{2}}$$
+$$f^{'''}(x)=\frac{3g(x)g^{'}(x)g^{''}(x)-g(x)^{2}g^{'''}(x)-2g^{'}(x)^{3}}{g(x)^{3}}-\frac{2}{x^{3}}$$
+According to  $g^{'''}(x)\leq3\frac{g^{''}(x)}{x}$
+$$|f^{'''}(x)|\leq\frac{3g''(x)}{-xg(x)}+2(\frac{|g'(x)|}{-g(x)})^{3}+\frac{3g''(x)|g'(x)|}{g(x)^{2}}+\frac{2}{x^{3}}$$
+if $f(x)$ is self-concordant, then it needs  to satisfies
+$$f^{'''}(x)\leq2f^{''}(x)^{3/2}$$
+So we can transfer the original problem to
+$$\frac{\frac{3g''(x)}{-xg(x)}+2(\frac{|g'(x)|}{-g(x)})^{3}+\frac{3g''(x)|g'(x)|}{g(x)^{2}}+\frac{2}{x^{3}}}{2((\frac{g'(x)}{g(x)})^{2}-\frac{g''(x)}{g(x)}+\frac{1}{x^{2}})^{\frac{3}{2}}}\leq 1$$
+We supposing
+$$a=\frac{(-g''(x)/g(x))^{\frac{1}{2}}}{((\frac{g'(x)}{g(x)})^{2}-\frac{g''(x)}{g(x)}+\frac{1}{x^{2}})^{\frac{1}{2}}}$$
+$$b=\frac{-\frac{|g'(x)|}{g(x)}}{((\frac{g'(x)}{g(x)})^{2}-\frac{g''(x)}{g(x)}+\frac{1}{x^{2}})^{\frac{1}{2}}}$$
+$$c=\frac{\frac{1}{x}}{((\frac{g'(x)}{g(x)})^{2}-\frac{g''(x)}{g(x)}+\frac{1}{x^{2}})^{\frac{1}{2}}}$$
+$$\{a,b,c>0\ |\ a^{2}+b^{2}+c^{2}=1\}$$
+Then we just need to prove
+$$\frac{3}{2}a^{2}c+b^{3}+\frac{3}{2}a^{2}b+c^{3}\leq1$$
+$$\frac{3}{2}a^{2}c+b^{3}+\frac{3}{2}a^{2}b+c^{3}=\frac{1}{2}(b+c)(3-(b+c)^{2})\leq1$$
+So $f(x)$ is self-concordant\\
+
+\section{}
+\subsection{}
+\textbf{1.To prove $-\sum\limits_{i=1}^{m}log(b_{i}-a_{i}^{T}x)\ on\ \{x\ |\ a_{i}^{T}x<b_{i},\ i=1,2,\cdots,m\}$ is self-concordant}\\
+let $$g(x)=-log(b-a^{T}x)$$
+$$g^{''}(x)=\frac{(a^{T})^{2}}{(b-a^{T}x)^{2}}$$
+$$g^{'''}=\frac{2(a^{T})^{3}}{(b-a^{T}x)^{3}}$$
+$$\frac{g^{'''}(x)}{2g^{''}(x)^{3/2}}=1$$
+$g(x)$ is self-concordant\\
+According to function preserves self-concordant under sum\\
+$f(x)=\sum\limits_{i=1}^{m}g(x)$ is self-concordant\\
+
+\subsection{}
+\textbf{2.To prove $f(X)=-log\ det(X)\ on\ S^{n}_{++}$ is self-concordant}\\
+$$f^{''}(X)=-(X^{-2})^{T}$$
+$$f^{'''}(X)=-2(X^{-3})^{T}$$
+$$\frac{f^{'''}(X)}{2f^{''}(X)^{3/2}}=1$$
+$f(X)$ is self-concordant\\
+
+\subsection{}
+\textbf{3.To prove $f(x,y)=-log(y^{2}-x^{T}x)\ on\ \{(x,y)\ |\ ||x||_{2}<y\}$ is self-concordant}\\
+Limit the function to lines:$x=\hat x+tv,\ y= \hat y +tw$\\
+Then we have
+$$f( \hat x +tv, \hat y +tw)=-log(\hat y +tw) - log (\hat y +tw -\frac{(\hat x)^{T}\hat x +2t (\hat x)^{T}v+t^{2}v^{T}v}{\hat y +tw})$$
+when $w=0$
+$$f(t)=-log((\hat y)^{2}-(\hat x+tv)^{2})\quad dom f =\{ t \big| (\hat y)^{2}-(\hat x+tv) > 0\}$$
+$$f(t)=-log(w^{2}(t-a)(t-b))=-log(w^{2})-log(t-a)-log(t-b)\quad (a,b\ are\ the\ solutions)$$
+As $-log\ x$ is self-concordant and affine principles, $f(x,y)$ is self-concordant\\
+when $w\neq0$, let $t=\frac{y-\hat y}{w}$\\
+$$f=-log(\alpha+\beta y - \frac{\gamma}{y})-log(y)$$
+$$\alpha=2\frac{\hat y v^{T}v}{w^{2}}-2\frac{(\hat x)^{T}v}{w}$$
+$$\beta=1-\frac{v^{T}v}{w}$$
+$$\gamma=(\hat x)^{T}(\hat x)-2\frac{\hat y (\hat x)^{T}v}{w}+\frac{(\hat y )^{2} v^{T}v}{w^{2}}$$
+let $g(y)=-\alpha - \beta y +\frac{\gamma}{y} $,\\
+then $$f(\hat x +tv, \hat y +tw)=-log(-g(y))-log(y)$$
+$$g''(y)=\frac{2\gamma}{y^{3}}$$
+$$g'''(y)=-\frac{6\gamma}{y^{4}}$$
+$$ |g'''(y)| \leq \frac{3g''(y)}{y}\ and\ g(x)\ is \ convex$$
+According to problem 3, $f(x,y)$ is self-concordant\\
+
+\section{}
+\subsection{}
+
+\textbf{1.To rewrite $B^{+}=B+\frac{(y-Bs)(y-Bs)^{T}}{(y-Bs)^{T}s}$ as $C^{+}=C+\frac{(s-Cy)(s-Cy)^{T}}{(s-Cy)^{T}y}$}\\
+According to Sherman-Morrison formula:
+$$(A+uv{T})^{-1}=A^{-1}-\frac{A^{-1}uv^{T}A^{-1}}{1+v^{T}A^{-1}u}$$
+$$C^{+}=C-\frac{C(y-Bs)(y-Bs)^{T}C}{1+(y-Bs)^{T}C(y-Bs)}$$
+As $BC=I,\ (y-Bs)^{T}s=1$
+$$C^{+}=C-\frac{(s-Cy)(s-Cy)^{T}}{(y-Bs)^{T}s+(y-Bs)^{T}(Cy-s)}$$
+$$C^{+}=C+\frac{(s-Cy)(s-Cy)^{T}}{(s-Cy)^{T}y}$$
+
+\subsection{}
+\textbf{2.To rewrite $B^{+}=B-\frac{Bss^{T}B}{s^{T}Bs}+\frac{yy^{T}}{y^{T}s}$ as $C^{+}=(I-\frac{sy^{T}}{y^{T}s})C(I-\frac{ys^{T}}{y^{T}s})+\frac{ss^{T}}{y^{T}s}$}
+According to Sherman-Morrison formula:
+$$(A+\frac{uu^{t}}{t})^{-1}=A^{-1}-\frac{A^{-1}(uu^{T})A^{-1}}{t+u^{T}A^{-1}u}$$
+$$(B+\frac{yy^{T}}{y^{T}s}-\frac{Bss^{T}B^{T}}{s^{T}Bs})^{-1}=(B+\frac{yy^{T}}{y^{T}s})^{-1}+\frac{(B+\frac{yy^{T}}{y^{T}s})^{-1}Bss^{T}B(B+\frac{yy^{T}}{y^{T}s})^{-1}}{s^{T}Bs-s^{T}B(B+\frac{yy^{T}}{y^{T}s})^{-1}Bs}$$
+$$C^{+}=(B+\frac{yy^{T}}{y^{T}s})^{-1}+(B+\frac{yy^{T}}{y^{T}s})^{-1}\frac{Bss^{T}B}{s^{T}Bs-s^{T}B(B+\frac{yy^{T}}{y^{T}s})^{-1}Bs}(B+\frac{yy^{T}}{y^{T}s})^{-1}$$
+$$C^{+}=C+\frac{ss^{T}y^{T}s}{(s^{T}y)^{2}}+\frac{ss^{T}yCy^{T}}{(s^{T}y)^{2}}-\frac{Cys^{T}}{s^{T}y}-\frac{sy^{T}C}{y^{T}s}$$
+$$C^{+}=C(I-\frac{sy^{T}}{y^{T}s})-\frac{sy^{T}C}{s^{T}y}(I-\frac{sy^{T}}{s^{T}y})+\frac{ss^{T}}{s^{T}y}=(I-\frac{sy^{T}}{y^{T}s})C(I-\frac{ys^{T}}{y^{T}s})+\frac{ss^{T}}{y^{T}s}$$
+
+
+\subsection{}
+\textbf{3.We know $C^{+}=C-\frac{Cyy^{T}C}{y^{T}Cy}+\frac{ss^{T}}{y^{T}s}$, to prove $B^{+}=(I-\frac{ys^{T}}{y^{T}s})B(I-\frac{sy^{T}}{y^{T}s})+\frac{yy^{T}}{y^{T}s}$}\\
+$$(C^{+})^{-1}=(C+\frac{ss^{T}}{y^{T}s})^{-1}+\frac{(C+\frac{ss^{T}}{y^{T}s})^{-1}Cyy^{T}C(C+\frac{ss^{T}}{y^{T}s})^{-1}}{y^{T}Cy+y^{T}C(C+(\frac{ss^{T}}{y^{T}s})^{-1}Cy}$$
+$$(C^{+})^{-1}=C^{-1}+\frac{yy^{T}ys}{(s^{T})^{2}}+\frac{yy^{T}SC^{-1}S^{T}}{(s^{T}y)^{2}}-\frac{C^{-1}sy^{T}}{y^{T}s}-\frac{ys^{T}C^{-1}}{s^{T}y}$$
+$$(C^{+})^{-1}=C^{-1}(I-\frac{sy^{T}}{y^{T}s})-\frac{ys^{T}C^{-1}}{s^{T}y}(I-\frac{ys^{T}}{s^{T}y})+\frac{yy^{T}}{s^{T}y}$$
+$$B^{+}=(I-\frac{ys^{T}}{y^{T}S})B(I-\frac{sy^{T}}{y^{T}s})+\frac{yy^{T}}{y^{T}s}$$
+
+
+
+
+\end{document}
